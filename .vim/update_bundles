@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+git_bundles = [ 
+  "git://github.com/pangloss/vim-javascript.git",
+  "git://github.com/tpope/vim-fugitive.git",
+  "git://github.com/tpope/vim-git.git",
+  "git://github.com/tpope/vim-haml.git",
+  "git://github.com/tpope/vim-rails.git",
+  #"git://github.com/tpope/vim-vividchalk.git",
+  #"git://github.com/slack/vim-bufexplorer.git",
+  "git://github.com/widox/vim-buffer-explorer-plugin.git",
+  #"git://github.com/wincent/command-t.git",
+  "git://github.com/msanders/snipmate.vim.git",
+  "git://github.com/vim-ruby/vim-ruby.git",
+  "git://github.com/kien/ctrlp.vim.git",
+  "git://github.com/Lokaltog/vim-easymotion.git",
+  "git://github.com/Lokaltog/vim-powerline.git",
+  "git://github.com/godlygeek/tabular.git"
+]
+
+require 'fileutils'
+require 'open-uri'
+
+bundles_dir = File.join(File.dirname(__FILE__), "bundle")
+
+FileUtils.cd(bundles_dir)
+
+puts "trashing everything (lookout!)"
+Dir["*"].each {|d| FileUtils.rm_rf d }
+
+git_bundles.each do |url|
+  dir = url.split('/').last.sub(/\.git$/, '')
+  puts "unpacking #{url} into #{dir}"
+  `git clone #{url} #{dir}`
+  FileUtils.rm_rf(File.join(dir, ".git"))
+end

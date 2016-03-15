@@ -1,2 +1,5 @@
 # vimrc
-My personal vimrc and vim plugin list
+
+> My vimrc and vim plugin list
+
+Place in the home directory, run update_bundles to install plugins
