@@ -144,8 +144,8 @@ if has("autocmd")
     \ endif
 endif
 
-call pathogen#infect()
-call pathogen#helptags()
+" call pathogen#infect()
+" call pathogen#helptags()
 
 " Powerline vim plugin for fancy styling
 "let g:Powerline_symbols = 'fancy'
